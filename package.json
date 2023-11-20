@@ -1,0 +1,16 @@
+{
+  "name": "ankruti",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^26.3.0",
+    "mongodb": "^6.3.0"
+  }
+}

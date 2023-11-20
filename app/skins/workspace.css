@@ -1,0 +1,22 @@
+@import url(./index.css);
+._workspace{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    /* width: 85%; */
+}
+.innerBand{
+    width: 200%;
+    height: 200%;
+    background-color: var(--background);
+    z-index: 2;
+}
+.projectWindow{
+    width:800px;
+    height: 500px; 
+    min-width: 40%;
+    min-height: 34%;
+    aspect-ratio:56.25%;
+    background-color: var(--primary);   
+    overflow: scroll;
+    position: relative;
+}

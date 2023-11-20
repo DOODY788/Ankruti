@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankruti - Project name</title>
+    <link rel="stylesheet" href="./skins/index.css">
+    <link rel="stylesheet" href="./skins/_comp.css">
+    <link rel="stylesheet" href="./skins/stat.css">
+    <link rel="stylesheet" href="./skins/workspace.css">
+    <link rel="stylesheet" href="./skins/animations.css">
+    <link rel="stylesheet" href="./skins/outlets.css">
+    <link rel="stylesheet" href="./skins/prop.css">
+    <link rel="stylesheet" href="./skins/notification.css">
+</head>
+<body>
+        <section class="main flex-column">
+            <div class="headers flex-row">
+                <div class="contents">
+                    <ul class="flex-row centerY ">
+                        <li class="menu_tabs flex-column centerX centerY" onclick="extendOptions(this)" data-type="File"><p>File</p></li>
+                        <li class="menu_tabs flex-column centerX centerY" onclick="extendOptions(this)" data-type="Edit"><p>Edit</p></li>
+                        <li class="menu_tabs flex-column centerX centerY" onclick="extendOptions(this)" data-type="View"><p>View</p></li>
+                        <li class="menu_tabs flex-column centerX centerY" onclick="extendOptions(this)" data-type="Tools"><p>Tools</p></li>
+                        <li class="menu_tabs flex-column centerX centerY" onclick="extendOptions(this)" data-type="Settings"><p>Settings</p></li>
+                        <li class="menu_tabs flex-column centerX centerY" onclick="extendOptions(this)" data-type="Add"><p>Add</p></li>
+                    </ul>
+                </div>
+                <div class="dragspace"></div>
+                <div class="projectname" onclick="projectSegment()">
+                    <h3>Untitled project</h3>
+                </div>
+            </div>
+            <div class="body flex-row">
+                <div class="_comp flex-column">
+                    <div class="tabFrame flex-column">
+                        <div class="tb_frame flex-row">
+                            <div class="tb_outlets  _comp_tb"data-isActive='false' onclick="changeTab(this)" data-frame="out_frame">Outlets</div>
+                            <div class="tb_components  _comp_tb" data-isActive='true' onclick="changeTab(this)" data-frame="comp_frame">Components</div>
+                        </div>
+                        <div class="tb_line">
+                            <div class="innerline"></div>
+                        </div>
+                    </div>
+                    <div class="frames">
+                        <div class="comp_frame flex-column centerY frs">
+                            <div class="childcomp flex-row centerY fadein" style="animation-delay: 0.5s; opacity: 0;">
+                                <div class="sidebar"></div>
+                                <div class="cont flex-row centerY">
+                                    <div class="name">Body</div>
+                                    <div class="cc_prop">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="opcomchi"></div>
+                            </div>
+                        </div>
+                        <div class="out_frame frs  fadein  flex-column ">
+                            <div class="search_div" id="out_comp_search">
+                                <input type="text" class="search" id="out_comp_sr">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                            </div>
+                            <div class="main_container flex-column centerY">
+                                    <button class="btn active" id="out_loader">Load components</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scaler L" ondblclick="snapCont()"></div>
+                <div class="_workspace">
+                    <div class="innerBand flex-column centerX centerY">
+                        <div class="projectWindow">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="scaler R" ondblclick="snapProp()"></div>
+                <div class="_prop flex-column centerY ">
+                    <div class="generalProp ">
+                            <div class="prop_chunk" id="class_id">
+                                <div class="label flex-row centerY">
+                                    <h3>Class and Id:</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up sn_div" viewBox="0 0 16 16" class="sn_div" data-parent="class_id">
+                                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                    </svg>
+                                </div>
+                                <div class="elem_id">
+                                    <label for="em_id">
+                                        Id : <input type="text" class="definp" placeholder="id of the element" id="em_id">
+                                        <input type="button" value="change" class="prop_btn" id="em_id_btn" >
+                                    </label>
+                                </div>
+                                <div class="elem_class"style="margin: 0.5rem 0;">
+                                    <label for="em_class">
+                                        Class: <input type="text" placeholder="Element class"  id="em_class" class="definp">
+                                        <input type="button"  id="em_class_btn" class="prop_btn" value="change">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="prop_chunk " id="dimentions">
+                                <div class="label flex-row centerY">
+                                    <h3>Dimensions & Layouts:</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up sn_div" viewBox="0 0 16 16" class="sn_div" data-parent="dimentions">
+                                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                    </svg>
+                                </div>
+                                <div class="dimen flex-column centerY centerX">
+                                    <label for="em_wid">
+                                        Width: <input type="text" id="em_width" class="definp" >
+                                        <select  id="dw_mes" style="display: inline;">
+                                            <option value="px"> px </option>
+                                            <option value="rem"> rem </option>
+                                            <option value="em"> em </option>
+                                            <option value="%"> %</option>
+                                        </select>
+                                    </label>
+                                    <label for="em_hei">
+                                        Height: <input type="text" id="em_hei" class="definp" >
+                                        <select  id="dh_mes" style="display: inline;">
+                                            <option value="px"> px </option>
+                                            <option value="rem"> rem </option>
+                                            <option value="em"> em </option>
+                                            <option value="%"> %</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="lyts">
+                                    <br>
+                                    <hr>
+                                    <label for="em_lyt">
+                                        Layout:
+                                        <div class="displaytype">
+                                            <select id="distype">
+                                                <option value="block">Block</option>
+                                                <option value="block">Contents</option>
+                                                <option value="block">Flex</option>
+                                                <option value="block">Flexbox</option>
+                                                <option value="block">Flex-root</option>
+                                                <option value="block">Grid</option>
+                                                <option value="block">Inline</option>
+                                                <option value="block">Inline-block</option>
+                                                <option value="block">Inline-flex</option>
+                                                <option value="block">Inline-flexbox</option>
+                                                <option value="block">Inline-table</option>
+                                                <option value="block">List-item</option>
+                                                <option value="block">Run-in</option>
+                                                <option value="block">Table</option>
+                                                <option value="block">Table-caption</option>
+                                                <option value="block">Table-column-group</option>
+                                                <option value="block">Table-header-group</option>
+                                                <option value="block">Table-footer-group</option>
+                                                <option value="block">Table-row-group</option>
+                                                <option value="block">Table-cell</option>
+                                                <option value="block">Table-column</option>
+                                                <option value="block">Table-row</option>
+                                                <option value="block">None</option>
+                                                <option value="block">Initial</option>
+                                                <option value="block">Inherit</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label for="al" class="aa">
+                                        Alignment:<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                          </svg>
+                                        <div class="al flex-row centerY">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-bottom" viewBox="0 0 16 16">
+                                                <rect width="4" height="12" x="6" y="1" rx="1"/>
+                                                <path d="M1.5 14a.5.5 0 0 0 0 1v-1zm13 1a.5.5 0 0 0 0-1v1zm-13 0h13v-1h-13v1z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-center" viewBox="0 0 16 16">
+                                                <path d="M8 1a.5.5 0 0 1 .5.5V6h-1V1.5A.5.5 0 0 1 8 1zm0 14a.5.5 0 0 1-.5-.5V10h1v4.5a.5.5 0 0 1-.5.5zM2 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-end" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z"/>
+                                                <path d="M13 7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-middle" viewBox="0 0 16 16">
+                                                <path d="M6 13a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v10zM1 8a.5.5 0 0 0 .5.5H6v-1H1.5A.5.5 0 0 0 1 8zm14 0a.5.5 0 0 1-.5.5H10v-1h4.5a.5.5 0 0 1 .5.5z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-start" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"/>
+                                                <path d="M3 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-top" viewBox="0 0 16 16">
+                                                <rect width="4" height="12" rx="1" transform="matrix(1 0 0 -1 6 15)"/>
+                                                <path d="M1.5 2a.5.5 0 0 1 0-1v1zm13-1a.5.5 0 0 1 0 1V1zm-13 0h13v1h-13V1z"/>
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="prop_chunk " id="appearance">
+                                <div class="label flex-row centerY">
+                                    <h3>Appearance:</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up sn_div" viewBox="0 0 16 16" data-parent="appearance">
+                                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                    </svg>
+                                </div>
+                                <div class="elemBack">
+                                    <label for="em_back_div">
+                                        Background:
+                                        <div class="background_div flex-row" id="em_back_div">
+                                            <div class="preview"></div>
+                                            <div class="bg_name">Background Name</div>
+                                            <div class="moreBg flex-column">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="elemBorders" id="elem_brds">
+                                    <label for="em_border">
+                                        Borders:
+                                        <div class="mainbrds flex-column">
+                                            <div class="upperborders">
+                                                <input type="text" placeholder="top-left" class="definp">
+                                                <input type="text" placeholder="top-right" class="definp">
+                                            </div>
+                                            <div class="previewBrds flex-column centerX centerY">
+                                                <div class="upperborder dbhr bd"></div>
+                                                <div class="center flex-row ">
+                                                    <div class="leftbd dbvr bd">
+                                                    </div>
+                                                    <div class="cent">
+                                                        in <select name="measurements" id="mes">
+                                                            <option value="px"> px </option>
+                                                            <option value="rem"> rem </option>
+                                                            <option value="em"> em </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="rightbd dbvr bd"></div>
+                                                </div>
+                                                <div class="lowerborder dbhr bd"></div>
+
+                                            </div>
+                                            <div class="lowerborders">
+                                                <input type="text" placeholder="bottom-left" class="definp">
+                                                <input type="text" placeholder="bottom-right" class="definp">
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="elemBxshdw " id="elem_bxdshd">
+                                    <label for="bxshd">
+                                        Box shadow:
+                                        <div class="mainbx">
+                                            <input type="text" id="off_x" class="definp" placeholder="offset X">
+                                            <input type="text" id="off_y" class="definp" placeholder="offset Y">
+                                            <input type="text" id="radiusBR" class="definp" placeholder="blur radius">
+                                            px
+                                            <div class="bxclrs">
+                                                <input type="color" class="clsr" id="clr">
+                                                <select  id="staticclrs">
+                                                    <option value="">clr1</option>
+                                                    <option value="">clr2</option>
+                                                    <option value="">clr3</option>
+                                                </select>
+                                            </div>
+                                            <input type="button" value="Apply" class="prop_btn">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="prop_chunk"></div>
+                            <div class="prop_chunk"></div>
+                            <div class="prop_chunk"></div>
+                            <div class="prop_chunk"></div>
+                            <div class="prop_chunk"></div>
+                    </div>
+                </div>
+                <div class="pullups flex-column ">
+                    <div class="File dd_div">
+                        <div class="dd_elem ungrp">New File</div>
+                        <div class="dd_elem ungrp">New Window</div>
+                        <div class="dd_elem ungrp">Open FIle</div>
+                        <div class="dd_elem ungrp">New</div>
+                    </div>
+                    <div class="Edit dd_div">
+                        <div class="dd_elem ungrp">Undo</div>
+                        <div class="dd_elem ungrp">Rendo</div>
+                        <div class="dd_elem ungrp">cut</div>
+                        <div class="dd_elem ungrp">copy</div>
+                        <div class="dd_elem ungrp">copy</div>
+                    </div>
+                    <div class="View dd_div">
+                        <div class="dd_elem ungrp">New File</div>
+                        <div class="dd_elem ungrp">New Window</div>
+                        <div class="dd_elem ungrp">Open FIle</div>
+                        <div class="dd_elem ungrp">New</div>
+                    </div>
+                    <div class="Add dd_div">
+                            <div class="dd_elem grp" data-name="layout">Layout <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <div class="layout grp_child">
+                                    <div class="dd_elem add_grps" data-name="childlist"> Article <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Aside <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Body <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Div <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Footer <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Header <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Nav <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Section <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                    <div class="dd_elem add_grps" data-name="childlist"> Summary <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></div>
+                                </div>
+                            </div>
+                            <div class="dd_elem grp" data-name="widgets">Widgets <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg>
+                              <div class="widgets grp_child">
+                                    <div class="dd_elem  grp" data-name="headchild"> Headdings / Para  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                      </svg>
+                                        <div class="dd_elem  wid_grps  headchild slidein2" data-name="wid_child">
+                                            <div class="dd_elem wid_child">H1</div>
+                                            <div class="dd_elem wid_child">H2</div>
+                                            <div class="dd_elem wid_child">H3</div>
+                                            <div class="dd_elem wid_child">H4</div>
+                                            <div class="dd_elem wid_child">H5</div>
+                                            <div class="dd_elem wid_child">H6</div>
+                                        </div>
+                                    </div>
+                                    <div class="dd_elem grp" data-name="multimedia"> Multimedia  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                      </svg>
+                                      <div class="dd_elem grp_child multimedia">
+                                            <div class="dd_elem grp">Hello</div>
+                                            <div class="dd_elem grp">Hello</div>
+                                            <div class="dd_elem grp">Hello</div>
+                                            <div class="dd_elem grp">Hello</div>
+                                      </div>
+                                    </div>
+                                    <div class="dd_elem grp"> Form  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                      </svg></div>
+                                    <div class="dd_elem grp"> Navigation elements  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                      </svg></div>
+                              </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="statusbar flex-row" >
+                <div class="windowStatus">
+                    <p>Status : Good</p>
+                </div>
+            </div>
+        </section>
+
+        <!--FLoationg Sections -->
+
+        <section class="projectSegment">
+            <div class="pjsec flex-column centerY centerX">
+                
+                <form action=".">
+                    <input type="text" class="definp" id="projectid">
+                    <input type="button" value="Save project">
+                </form>
+            </div>
+        </section>
+</body>
+<script type="module" src="./logic/notification.js"></script>
+<script type="module" src="./logic/main.js"></script>
+<script  src="./logic/index.js"></script>
+</html>
